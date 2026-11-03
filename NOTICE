@@ -1,0 +1,10 @@
+meko-benchmarks
+Copyright 2026 Yugabyte, Inc.
+
+The judge prompt and answer prompts in benchmarks/locomo/prompts.py reproduce those of
+the Mem0 project's published evaluation code (https://github.com/mem0ai/mem0, Apache License 2.0)
+so that judge scores are comparable with the published numbers.
+
+The LoCoMo dataset (Maharana et al., 2024, https://github.com/snap-research/locomo) is NOT
+distributed with this repository. It is licensed CC BY-NC 4.0; fetch it with
+datasets/locomo/fetch.sh.

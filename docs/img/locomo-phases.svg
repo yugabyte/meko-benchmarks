@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="250" viewBox="0 0 960 250" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" role="img" aria-label="LoCoMo phases">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#1a1a1a"/></marker></defs>
+<rect width="960" height="250" fill="white"/>
+<path d="M30 99 v52 a60.0 9 0 0 0 120 0 v-52" fill="#e9e9e9" stroke="#1a1a1a" stroke-width="1.2"/>
+<ellipse cx="90.0" cy="99" rx="60.0" ry="9" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="90.0" y="134.0" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">dataset</text>
+<rect x="190" y="60" width="225" height="130" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="302.5" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">1 · ingest</text>
+<text x="302" y="112" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">a datapack per conversation</text>
+<text x="302" y="129" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">a Meko conversation per session</text>
+<text x="302" y="146" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">a message per speaker turn</text>
+<text x="302" y="163" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">backdated with session_date</text>
+<rect x="445" y="100" width="105" height="50" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="497.5" y="118.0" text-anchor="middle" font-size="13" font-weight="500" fill="#1a1a1a">embed turns</text>
+<text x="497.5" y="137.0" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">vectors the DB lacks</text>
+<rect x="580" y="60" width="180" height="130" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="670.0" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">2 · retrieve</text>
+<text x="670" y="112" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">context_search once</text>
+<text x="670" y="129" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">memory_search at each k</text>
+<text x="670" y="146" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">hits tagged with session</text>
+<text x="670" y="163" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">→ retrieval.jsonl</text>
+<rect x="790" y="60" width="160" height="130" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="870.0" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">3 · answer</text>
+<text x="870" y="112" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">memories + turns in context</text>
+<text x="870" y="129" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">question date is today</text>
+<text x="870" y="146" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">F1 · BLEU-1 · mem0 judge</text>
+<text x="870" y="163" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">→ answers.jsonl · report</text>
+<path d="M150 125 L190 125" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M415 125 L445 125" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M550 125 L580 125" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M760 125 L790 125" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="480" y="225" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">every phase resumes from runs/&lt;run_id&gt;/; a stopped run continues where it left off</text>
+</svg>

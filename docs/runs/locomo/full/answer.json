@@ -1,0 +1,25 @@
+{
+ "answer_model": "gpt-4.1-mini",
+ "temperature": 0,
+ "judge_model": "gpt-4.1-mini",
+ "prompt": "mem0",
+ "prompts": {
+  "answer": {
+   "name": "mem0 answer prompt (MEM0_ANSWER)",
+   "file": "prompts.py",
+   "sha": "79c9f09b"
+  },
+  "adversarial": {
+   "name": "LoCoMo paper short-answer prompt + abstain hint",
+   "file": "score.py",
+   "sha": "889303a1"
+  },
+  "judge": {
+   "name": "mem0 judge prompt (MEM0_JUDGE)",
+   "file": "prompts.py",
+   "sha": "d8b9db0c"
+  }
+ },
+ "finished": "2026-09-24 18:00",
+ "rows": 5958
+}

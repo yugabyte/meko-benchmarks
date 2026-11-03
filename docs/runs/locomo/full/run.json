@@ -1,0 +1,9 @@
+{
+ "started": "2026-09-24 13:11",
+ "conversations": "all",
+ "ks": "10,25,50",
+ "categories": "1,2,3,4,5",
+ "context": "memories+turns",
+ "prompt": "mem0",
+ "label": "locomo-run1-baseline"
+}

@@ -1,0 +1,21 @@
+{
+ "finished": "2026-10-16 22:49",
+ "mcp_url": "http://127.0.0.1:8101/mcp",
+ "agent_id": "meko",
+ "trace": "b65045ba2034415197406cadf84d7c22",
+ "trace_per_question": true,
+ "ks": [
+  25
+ ],
+ "categories": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "conversation_tier": true,
+ "questions": 1986,
+ "rows": 1986,
+ "failed": 0
+}
