@@ -16,30 +16,33 @@ you can reach over MCP and REST.
 
 ```bash
 git clone <this repo> && cd meko-benchmarks
-cp .env.example .env                  # set MEKO_*_URL, a token or login, OPENAI_API_KEY
+cp .env.example .env                  # set MEKO_*_URL, a token or login, OPENAI_API_KEY, MEKO_DB_URL
 datasets/locomo/fetch.sh              # LoCoMo is CC BY-NC 4.0, so it is downloaded, not bundled
 
 cd benchmarks/locomo
-./ingest.py   --run r1 --smoke        # 3 turns, checks the stored date is 2023
-./ingest.py   --run r1                # phase 1
-./retrieve.py --run r1 --ks 10,25,50  # phase 2
-./answer.py   --run r1 --prompt two-step
-./report.py   --run r1                # score tables
-./compare.py  --run r1                # next to published systems
+./ingest.py      --run smoke --smoke  # 3 turns, checks the stored date is 2023; keep its run id separate
+./ingest.py      --run r1             # phase 1
+./embed_turns.py --run r1             # vectors for the stored turns
+./retrieve.py    --run r1 --ks 10,25,50 --categories 1,2,3,4,5   # phase 2
+./answer.py      --run r1 --prompt two-step --judge cognis --judge-model gpt-4.1-2025-04-14
+./report.py      --run r1             # score tables
+./compare.py     --run r1             # next to published systems
 ```
 
-Each phase resumes from `runs/locomo/<run>/`. Every run ingests its own datapacks, so runs never share memories.
+Each phase resumes from `runs/locomo/<run>/`. Every run ingests its own datapacks, so runs never share memories;
+use a new run id for each run.
 `./baseline.py` gives the no-Meko floor (naive RAG) and ceiling (full conversation in context).
 
 ## Server settings that affect the numbers
 
-The published runs used `text-embedding-3-small` embeddings, mem0 extraction, `MEMORY_SEARCH_MIN_SCORE=0` and
-`CONVERSATION_HIT_DISTANCE=2.0` (keep every hit up to k). Record yours alongside any result you publish.
+The published numbers need a self-hosted Meko stack with specific server settings and backdating patches.
+[docs/replication.md](docs/replication.md) lists all of them with exact values, the scores to expect, and a check
+after each step. Record yours alongside any result you publish.
 
 ## Layout
 
 ```
-benchmarks/locomo/   the five phases (ingest, retrieve, answer, report, compare) and the scorer
+benchmarks/locomo/   the phases (ingest, embed_turns, retrieve, answer, report, compare) and the scorer
 common/              Meko client, auth, context rendering, published comparison numbers
 datasets/locomo/     fetch script (data not bundled)
 docs/                pipeline docs, results, per-run reports
