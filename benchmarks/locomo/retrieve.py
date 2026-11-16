@@ -8,6 +8,7 @@
   ./retrieve.py --run conv26                    memory_search at k=10 and k=50, plus conversation turns
   ./retrieve.py --run conv26 --ks 10,50,200     mem0 publishes at 200
   ./retrieve.py --run conv26 --no-conversation  memories only
+  ./retrieve.py --run conv26 --ks 25 --conversation-hit-distance 2.0   benchmark-VM-equivalent conversation gate
   ./retrieve.py --run conv26 --ks 25 --tool meko_search [--pipeline cognis|raw] [--search-limit N]
 
 Two sources per question. memory_search gives k memories. context_search with
@@ -141,11 +142,19 @@ async def main():
     ap.add_argument("--search-limit", type=int, metavar="N",
                     help="meko_search's limit, one call per question shared by every k (default: one call per k, limit k); "
                          "--limit stays the questions per conversation")
+    ap.add_argument("--conversation-hit-distance", type=float, metavar="D",
+                    help="per-call cosine-distance gate for context_search's conversation tier (0-2; the server's "
+                         "default is 0.35). Sent only when set; 2.0 matches the benchmark VM, which admitted every "
+                         "candidate. Needs a server that has the conversation_hit_distance argument")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     meko_search = args.tool == "meko_search"
     if meko_search and (args.no_conversation or args.reuse_conversation):
         sys.exit("--tool meko_search searches the conversation cache itself; --no-conversation and --reuse-conversation do not apply")
+    if args.conversation_hit_distance is not None and (meko_search or args.no_conversation or args.reuse_conversation):
+        sys.exit("--conversation-hit-distance applies to context_search's conversation tier: not with "
+                 "--tool meko_search, --no-conversation or --reuse-conversation")
+    gate_args = {} if args.conversation_hit_distance is None else {"conversation_hit_distance": args.conversation_hit_distance}
     if args.search_limit and not meko_search:
         sys.exit("--search-limit is meko_search's limit; memory_search uses each k")
 
@@ -244,7 +253,7 @@ async def main():
                         if not args.no_conversation and qid in reuse:
                             conversation = reuse[qid]
                         elif not args.no_conversation:
-                            cs = await spans.mcp(qid, meko, "context_search", summary=ctx_summary, limit=max(want_ks), force_source="conversation", **common)
+                            cs = await spans.mcp(qid, meko, "context_search", summary=ctx_summary, limit=max(want_ks), force_source="conversation", **gate_args, **common)
                             c = (cs.get("results") or {}).get("conversation") or {}
                             conversation = {"hits": [slim_turn(t) for t in c.get("hits") or []],
                                             "thread": [slim_turn(t) for t in c.get("thread") or []]}
@@ -285,6 +294,7 @@ async def main():
         "finished": time.strftime("%Y-%m-%d %H:%M"), "mcp_url": cfg["url"], "agent_id": cfg["agent"], "trace": meko.trace, "trace_per_question": True,
         "ks": ks, "categories": sorted(cats), "conversation_tier": not args.no_conversation,
         "questions": len(plan), "rows": len(rows), "failed": failed, "tool": args.tool,
+        "conversation_hit_distance": args.conversation_hit_distance,
         **({"pipeline": args.pipeline, "search_limit": args.search_limit} if meko_search else {})}, indent=1))
 
 
