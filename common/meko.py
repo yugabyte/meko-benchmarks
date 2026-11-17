@@ -29,6 +29,11 @@ class MekoError(RuntimeError):
     pass
 
 
+class AmbiguousWrite(MekoError):
+    """A write whose outcome is unknown: the connection broke or the gateway answered 5xx after the request was
+    sent, so the server may or may not have stored it. Check before sending again."""
+
+
 class Unauthorized(MekoError):
     pass
 
@@ -91,13 +96,17 @@ class Meko:
                 if read_only:
                     last = e
                     continue
-                raise MekoError(f"write may have landed before {type(e).__name__}; not retrying") from e
+                raise AmbiguousWrite(f"write may have landed before {type(e).__name__}; not retrying") from e
             if r.status_code == 401:
                 raise Unauthorized("401 from MCP")
             if r.status_code in RETRY_STATUS or (read_only and r.status_code >= 500):
                 last = MekoError(f"HTTP {r.status_code}")
                 continue
-            r.raise_for_status()
+            try:
+                r.raise_for_status()
+            except httpx.HTTPStatusError as e:  # a gateway error is one failed call, not a reason to kill the process
+                msg = f"HTTP {r.status_code} from MCP ({'read' if read_only else 'write'}); timed out or bad gateway"
+                raise (MekoError if read_only else AmbiguousWrite)(msg) from e
             if "mcp-session-id" in r.headers:
                 self.session = r.headers["mcp-session-id"]
             return self._body(r, payload.get("id"))
@@ -267,6 +276,26 @@ class Meko:
                 if not self._transient(e) or delay is None:   # last attempt: let a timeout surface
                     raise
                 await asyncio.sleep(delay)
+
+    async def message_count(self, datapack_id, conversation_id):
+        """How many messages Meko holds for this conversation (conversation_get's message_count)."""
+        r = await self.call("conversation_get", read_only=True, conversation_id=conversation_id,
+                            datapack_id=datapack_id, agent_id=self.agent_id)
+        return int(r["message_count"])
+
+    async def landed(self, datapack_id, conversation_id, expected, patience=6, every=3):
+        """After an AmbiguousWrite: did the message arrive? True once the count reaches `expected`; False if it
+        stays below it for patience*every seconds. The count comes from trace ingestion, which can lag, so a
+        False is "not seen", and the caller's resend carries the same seed."""
+        for attempt in range(patience):
+            if attempt:
+                await asyncio.sleep(every)
+            try:
+                if await self.message_count(datapack_id, conversation_id) >= expected:
+                    return True
+            except MekoError:
+                pass  # the read can hit the same outage; keep waiting
+        return False
 
     async def memories(self, datapack_id, conversation_id):
         """(total, first page) from the API server's paginated listing. The page is

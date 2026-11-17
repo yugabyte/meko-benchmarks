@@ -72,6 +72,7 @@ async def settle(meko, rec, every=10, patience=2, max_wait=180):
 
 
 async def ingest_one(meko, sample, turns, rec, run, state_path, state, no_index):
+    from meko import AmbiguousWrite  # here, not at the top: --dry-run and turns_of() must work without httpx
     sid = sample["sample_id"]
     if not rec.get("datapack_id"):
         rec["datapack_id"] = await meko.create_datapack(f"locomo-{run}-{sid}")
@@ -82,8 +83,7 @@ async def ingest_one(meko, sample, turns, rec, run, state_path, state, no_index)
     rec.update(total=len(turns), status="ingesting")
     log(f"{sid}: {len(turns)} turns, resuming at {rec['sent']}")
 
-    for i in range(rec["sent"], len(turns)):
-        t = turns[i]
+    async def open_session(t):
         key = str(t["session"])
         if key not in sessions:
             n = sum(1 for x in turns if x["session"] == t["session"])
@@ -92,9 +92,31 @@ async def ingest_one(meko, sample, turns, rec, run, state_path, state, no_index)
                 rec["datapack_id"], f"{sid} session {t['session']}",
                 {"source": "locomo", "run": run, "sample_id": sid, "session": t["session"], "session_date": t["iso"]})
             save(state_path, state)
-        await meko.add_turn(rec["datapack_id"], sessions[key], t["text"], t["iso"],
-                            seed=f"locomo:{run}:{sid}:{t['dia_id']}",
-                            source="locomo", sample_id=sid, dia_id=t["dia_id"], speaker=t["speaker"])
+        return key
+
+    # Create every session's conversation before the first turn is sent, one at a time. Creates are the calls that
+    # hit the gateway hardest (each provisions a trace) and, made lazily, they landed together at session boundaries
+    # across all conversations, where 502s and dropped connections killed runs (2026-11-16). Up front they are
+    # serial, a failure costs no turns, and a resume only creates the sessions still missing.
+    for t in turns[rec["sent"]:]:
+        await open_session(t)
+
+    for i in range(rec["sent"], len(turns)):
+        t = turns[i]
+        key = await open_session(t)  # already open; kept so a session created some other way still works
+        args = (rec["datapack_id"], sessions[key], t["text"], t["iso"])
+        kw = dict(seed=f"locomo:{run}:{sid}:{t['dia_id']}", source="locomo", sample_id=sid, dia_id=t["dia_id"],
+                  speaker=t["speaker"])
+        try:
+            await meko.add_turn(*args, **kw)
+        except AmbiguousWrite as e:
+            # The server may have stored this turn before the connection broke. Look before sending again.
+            expected = sum(1 for x in turns[:i] if x["session"] == t["session"]) + 1
+            if await meko.landed(rec["datapack_id"], sessions[key], expected):
+                log(f"{sid}: {t['dia_id']} landed despite {str(e)[:60]}; not resending")
+            else:
+                log(f"{sid}: {t['dia_id']} not seen after {str(e)[:60]}; resending")
+                await meko.add_turn(*args, **kw)
         rec["sent"] = i + 1
         save(state_path, state)  # tiny file; keeps status.py live and a kill loses nothing
 

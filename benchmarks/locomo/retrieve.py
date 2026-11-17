@@ -8,6 +8,7 @@
   ./retrieve.py --run conv26                    memory_search at k=10 and k=50, plus conversation turns
   ./retrieve.py --run conv26 --ks 10,50,200     mem0 publishes at 200
   ./retrieve.py --run conv26 --no-conversation  memories only
+  ./retrieve.py --run conv26 --ks 25 --memory-via context_search   memory tier through context_search too
   ./retrieve.py --run conv26 --ks 25 --conversation-hit-distance 2.0   benchmark-VM-equivalent conversation gate
   ./retrieve.py --run conv26 --ks 25 --tool meko_search [--pipeline cognis|raw] [--search-limit N]
 
@@ -112,8 +113,17 @@ def ctx_summary(res):
     return {"chunk_hits": len(hits), "thread_turns": len(thread), "closest_distance": min(d) if d else None}
 
 
+def memory_hits(res):
+    """The memories of a memory_search reply, or of a context_search(force_source="memory") reply, same rows either way."""
+    r = res.get("results")
+    if isinstance(r, dict):  # context_search: results = {knowledge_base, memory, conversation}
+        r = r.get("memory")
+        r = r.get("hits") if isinstance(r, dict) else r
+    return r or []
+
+
 def mem_summary(res):
-    hits = res.get("results") or []
+    hits = memory_hits(res)
     sc = [h.get("score") for h in hits if h.get("score") is not None]
     return {"memories": len(hits), "top_score": max(sc) if sc else None, "low_score": min(sc) if sc else None,
             "ids": [h.get("id") for h in hits]}
@@ -142,6 +152,10 @@ async def main():
     ap.add_argument("--search-limit", type=int, metavar="N",
                     help="meko_search's limit, one call per question shared by every k (default: one call per k, limit k); "
                          "--limit stays the questions per conversation")
+    ap.add_argument("--memory-via", choices=["memory_search", "context_search"], default="memory_search",
+                    help="how the memory tier is fetched. context_search sends force_source=\"memory\", which returns the "
+                         "same memories in the same order (checked on conv-26) but, like the conversation tier, is logged as "
+                         "a search with its query and results, so it can be reviewed in the dashboard's search log")
     ap.add_argument("--conversation-hit-distance", type=float, metavar="D",
                     help="per-call cosine-distance gate for context_search's conversation tier (0-2; the server's "
                          "default is 0.35). Sent only when set; 2.0 matches the benchmark VM, which admitted every "
@@ -155,6 +169,8 @@ async def main():
         sys.exit("--conversation-hit-distance applies to context_search's conversation tier: not with "
                  "--tool meko_search, --no-conversation or --reuse-conversation")
     gate_args = {} if args.conversation_hit_distance is None else {"conversation_hit_distance": args.conversation_hit_distance}
+    if args.memory_via == "context_search" and (meko_search or args.reference_date):
+        sys.exit("--memory-via context_search does not combine with --tool meko_search or --reference-date (a memory_search argument)")
     if args.search_limit and not meko_search:
         sys.exit("--search-limit is meko_search's limit; memory_search uses each k")
 
@@ -259,8 +275,12 @@ async def main():
                                             "thread": [slim_turn(t) for t in c.get("thread") or []]}
                         for k in want_ks:
                             extra = {"reference_date": ref_of[sid]} if args.reference_date else {}
-                            hits = await spans.mcp(qid, meko, "memory_search", k=k, summary=mem_summary, limit=k, **common, **extra)
-                            rows.append({**base, "k": k, "hits": [slim(h) for h in hits.get("results", [])],
+                            if args.memory_via == "context_search":
+                                hits = await spans.mcp(qid, meko, "context_search", k=k, summary=mem_summary, limit=k,
+                                                       force_source="memory", **common, **extra)
+                            else:
+                                hits = await spans.mcp(qid, meko, "memory_search", k=k, summary=mem_summary, limit=k, **common, **extra)
+                            rows.append({**base, "k": k, "hits": [slim(h) for h in memory_hits(hits)],
                                          "conversation": conversation, "trace": qtrace})
                 except MekoError as e:
                     failed += len(want_ks)
@@ -294,7 +314,7 @@ async def main():
         "finished": time.strftime("%Y-%m-%d %H:%M"), "mcp_url": cfg["url"], "agent_id": cfg["agent"], "trace": meko.trace, "trace_per_question": True,
         "ks": ks, "categories": sorted(cats), "conversation_tier": not args.no_conversation,
         "questions": len(plan), "rows": len(rows), "failed": failed, "tool": args.tool,
-        "conversation_hit_distance": args.conversation_hit_distance,
+        "conversation_hit_distance": args.conversation_hit_distance, "memory_via": args.memory_via,
         **({"pipeline": args.pipeline, "search_limit": args.search_limit} if meko_search else {})}, indent=1))
 
 

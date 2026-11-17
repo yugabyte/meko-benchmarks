@@ -9,7 +9,20 @@ paper's token F1 / BLEU-1 and the Mem0 paper's LLM judge (J), so the numbers are
 
 Scores and the runs behind them: [docs/results.md](docs/results.md). Pipeline, prompts and scoring: [docs/locomo.md](docs/locomo.md).
 
+## Run it with an agent (or one command)
+
+Point a coding agent at this repo: [AGENTS.md](AGENTS.md) tells it how to run the benchmark, what to do when a
+check fails, and what to report. With a filled-in `.env` (copy `.env.example`) and the dataset fetched, the whole
+pipeline is one command that stops at the first failed gate:
+
+```bash
+datasets/locomo/fetch.sh
+cd benchmarks/locomo && ./run_all.py --run my-run
+```
+
 ## Reproduce
+
+The steps below are what `run_all.py` chains, for running one phase at a time.
 
 Requirements: [`uv`](https://docs.astral.sh/uv/), an OpenAI API key (answering and judging), and a Meko deployment
 you can reach over MCP and REST.
