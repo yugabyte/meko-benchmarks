@@ -8,3 +8,12 @@ so that judge scores are comparable with the published numbers.
 The LoCoMo dataset (Maharana et al., 2024, https://github.com/snap-research/locomo) is NOT
 distributed with this repository. It is licensed CC BY-NC 4.0; fetch it with
 datasets/locomo/fetch.sh.
+
+The text-to-SQL benchmark (benchmarks/text-to-sql) uses two benchmarks by the BIRD team
+(https://bird-bench.github.io): BIRD Mini-Dev (Li et al., "Can LLM Already Serve as a Database
+Interface? A Big Bench for Large-Scale Database Grounded Text-to-SQLs", NeurIPS 2023,
+https://github.com/bird-bench/mini_dev, CC BY-SA 4.0) and LiveSQLBench-Large
+(https://github.com/bird-bench/livesqlbench, CC BY-SA 4.0). Neither is distributed with this
+repository: fetch them with datasets/text-to-sql/fetch.sh. LiveSQLBench's answer SQL is available
+only from the BIRD team on request and must not be redistributed. The novel database in
+datasets/text-to-sql/novel was written for this repository and is licensed with it.

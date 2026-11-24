@@ -1,0 +1,1082 @@
+[
+ {
+  "question_id": 1,
+  "db_id": "db_q4w7",
+  "question": "How many active growers are there, not counting cooperatives?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8xjv g WHERE g.c_5dx4 = 'A' AND g.k_fj35 NOT IN (SELECT c_9dfh FROM t_8xjv WHERE c_9dfh IS NOT NULL)",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 2,
+  "db_id": "db_q4w7",
+  "question": "How many hives are in service?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 WHERE c_2ks7 IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 3,
+  "db_id": "db_q4w7",
+  "question": "How many bee yards does the company own rather than lease?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8zf7 WHERE c_758d IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 4,
+  "db_id": "db_q4w7",
+  "question": "What is the total area, in hectares, of all almond blocks?",
+  "evidence": "",
+  "SQL": "SELECT sum(b.c_9p5v) / 100.0 FROM t_3mgb b JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE c.c_352q = 'Almond'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 5,
+  "db_id": "db_q4w7",
+  "question": "How many inspections in 2025 found the colony queenless?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_945w WHERE c_m4bv = 1 AND c_5mfp >= '2025-01-01' AND c_5mfp < '2026-01-01'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 6,
+  "db_id": "db_q4w7",
+  "question": "List the codes of the bee yards in the Delta region.",
+  "evidence": "",
+  "SQL": "SELECT c_fv22 FROM t_8zf7 WHERE c_mkm8 = 5",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 7,
+  "db_id": "db_q4w7",
+  "question": "How many contracts for the 2023 season were cancelled?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_kk9b WHERE c_q592 = 2023 AND c_zj29 = 5",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 8,
+  "db_id": "db_q4w7",
+  "question": "How many hives were commissioned in 2021?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 h WHERE to_date(h.c_4c3j::text, 'YYYYDDD') BETWEEN DATE '2021-01-01' AND DATE '2021-12-31'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 9,
+  "db_id": "db_q4w7",
+  "question": "What is the price per hive, in dollars, on contract 9050?",
+  "evidence": "",
+  "SQL": "SELECT c_6jv8 / 100.0 FROM t_kk9b WHERE k_gw37 = 9050",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 10,
+  "db_id": "db_q4w7",
+  "question": "How many drivers currently work for the company?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_ckp3 WHERE c_kdc3 = 'D' AND c_7q9x IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 11,
+  "db_id": "db_q4w7",
+  "question": "How many Buckfast hives are in service?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 WHERE c_p2rg = 3 AND c_2ks7 IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 12,
+  "db_id": "db_q4w7",
+  "question": "Which crop needs the most hives per hectare? Give the crop name.",
+  "evidence": "",
+  "SQL": "SELECT c_352q FROM t_z66c ORDER BY c_xhk2 DESC LIMIT 1",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 13,
+  "db_id": "db_q4w7",
+  "question": "How many invoices have been voided?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_r77r WHERE c_j45j = 1",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 14,
+  "db_id": "db_q4w7",
+  "question": "How many growers are on the watch-list credit tier?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8xjv WHERE c_wts6 = 3",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 15,
+  "db_id": "db_q4w7",
+  "question": "How many blocks are not irrigated?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_3mgb WHERE c_c4rw = 0",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 16,
+  "db_id": "db_q4w7",
+  "question": "What was the highest mite load, in percent, found in any inspection in 2024? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(max(c_dmc9) / 3.0, 2) FROM t_945w WHERE c_5mfp >= '2024-01-01' AND c_5mfp < '2025-01-01'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 17,
+  "db_id": "db_q4w7",
+  "question": "How many hives have been lost because the colony absconded?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 WHERE c_q4p6 = 2",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 18,
+  "db_id": "db_q4w7",
+  "question": "Which grower became a customer most recently? Give its name.",
+  "evidence": "",
+  "SQL": "SELECT c_qp3g FROM t_8xjv ORDER BY c_5q2z DESC LIMIT 1",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 19,
+  "db_id": "db_q4w7",
+  "question": "How many hives were delivered for the 2025 season?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2025",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 20,
+  "db_id": "db_q4w7",
+  "question": "How many contracts for the 2026 season are still only quotes?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_kk9b WHERE c_q592 = 2026 AND c_zj29 = 1",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 21,
+  "db_id": "db_q4w7",
+  "question": "How many valid credit notes have been issued?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_r77r WHERE c_9q3t = 'C' AND c_j45j = 0",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 22,
+  "db_id": "db_q4w7",
+  "question": "What is the total hive capacity of the yards in the Upper Basin region?",
+  "evidence": "",
+  "SQL": "SELECT sum(c_623g) FROM t_8zf7 WHERE c_mkm8 = 1",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 23,
+  "db_id": "db_q4w7",
+  "question": "How many staff left the company in 2025?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_ckp3 WHERE c_7q9x BETWEEN DATE '2025-01-01' AND DATE '2025-12-31'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 24,
+  "db_id": "db_q4w7",
+  "question": "What is the average elevation, in metres, of apple blocks? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(b.c_j52k), 1) FROM t_3mgb b JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE c.c_352q = 'Apple'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 25,
+  "db_id": "db_q4w7",
+  "question": "How many member growers does the Delta Orchard Collective have?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8xjv m JOIN t_8xjv co ON co.k_fj35 = m.c_9dfh WHERE co.c_qp3g = 'Delta Orchard Collective'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 26,
+  "db_id": "db_q4w7",
+  "question": "How many inspections have been carried out by yard managers?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_945w i JOIN t_ckp3 s ON s.k_7sk8 = i.k_7sk8 WHERE s.c_kdc3 = 'M'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 27,
+  "db_id": "db_q4w7",
+  "question": "How many hives are still out in the field?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_p47h WHERE c_2qbr IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 28,
+  "db_id": "db_q4w7",
+  "question": "What is the largest number of hives ordered on a single contract?",
+  "evidence": "",
+  "SQL": "SELECT max(c_266t) FROM t_kk9b",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 29,
+  "db_id": "db_q4w7",
+  "question": "How many deposit invoices are still unpaid?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_r77r WHERE c_9q3t = 'D' AND c_j45j = 0 AND c_7w32 IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 30,
+  "db_id": "db_q4w7",
+  "question": "How many inspections were carried out in March 2025?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_945w WHERE c_5mfp >= '2025-03-01' AND c_5mfp < '2025-04-01'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 31,
+  "db_id": "db_q4w7",
+  "question": "What percentage of inspections in 2024 included a mite test? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(100.0 * count(c_dmc9) / count(*), 1) FROM t_945w WHERE c_5mfp >= '2024-01-01' AND c_5mfp < '2025-01-01'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 32,
+  "db_id": "db_q4w7",
+  "question": "How many hives in service have yard Y07 as their home yard?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 h JOIN t_8zf7 y ON y.k_ngt6 = h.k_ngt6 WHERE y.c_fv22 = 'Y07' AND h.c_2ks7 IS NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 33,
+  "db_id": "db_q4w7",
+  "question": "What is the earliest bloom start date of any 2026-season contract?",
+  "evidence": "",
+  "SQL": "SELECT min(c_gq7j) FROM t_kk9b WHERE c_q592 = 2026",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 34,
+  "db_id": "db_q4w7",
+  "question": "How many growers belong to a cooperative?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8xjv WHERE c_9dfh IS NOT NULL",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 35,
+  "db_id": "db_q4w7",
+  "question": "How many hives have been sold?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 WHERE c_q4p6 = 3",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 36,
+  "db_id": "db_q4w7",
+  "question": "How many hives in total are ordered on signed contracts for the 2026 season?",
+  "evidence": "",
+  "SQL": "SELECT sum(c_266t) FROM t_kk9b WHERE c_q592 = 2026 AND c_zj29 = 2",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 37,
+  "db_id": "db_q4w7",
+  "question": "How many kiwifruit blocks are there?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_3mgb b JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE c.c_352q = 'Kiwifruit'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 38,
+  "db_id": "db_q4w7",
+  "question": "How many contracts require grade A hives?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_kk9b WHERE c_tk45 = 'A'",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 39,
+  "db_id": "db_q4w7",
+  "question": "How many inspections found a drone-laying queen?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_945w WHERE c_m4bv = 3",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 40,
+  "db_id": "db_q4w7",
+  "question": "What is the highest price per hive, in dollars, on any contract?",
+  "evidence": "",
+  "SQL": "SELECT max(c_6jv8) / 100.0 FROM t_kk9b",
+  "difficulty": "simple",
+  "gold": "novel"
+ },
+ {
+  "question_id": 41,
+  "db_id": "db_q4w7",
+  "question": "What was the net revenue, in dollars, for the 2024 season? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100, 2) FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 WHERE v.c_j45j = 0 AND k.c_q592 = 2024",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 42,
+  "db_id": "db_q4w7",
+  "question": "What was the net revenue, in dollars, in fiscal year 2025? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100, 2) FROM t_r77r v WHERE v.c_j45j = 0 AND v.c_9kvq BETWEEN DATE '2024-07-01' AND DATE '2025-06-30'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 43,
+  "db_id": "db_q4w7",
+  "question": "Which grower brought in the most net revenue for the 2025 season? Give the grower's name.",
+  "evidence": "",
+  "SQL": "SELECT g.c_qp3g FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 WHERE v.c_j45j = 0 AND k.c_q592 = 2025 GROUP BY g.k_fj35, 1 ORDER BY sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 44,
+  "db_id": "db_q4w7",
+  "question": "How much money is outstanding, in dollars after discounts? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100, 2) FROM t_r77r v WHERE v.c_j45j = 0 AND v.c_9q3t IN ('D', 'F') AND v.c_7w32 IS NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 45,
+  "db_id": "db_q4w7",
+  "question": "For the 2024 season, how many hives were delivered at each strength grade? List the grade and the number of hives.",
+  "evidence": "",
+  "SQL": "SELECT p.c_3knh, count(*) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2024 GROUP BY 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 46,
+  "db_id": "db_q4w7",
+  "question": "How many hives were delivered late in the 2023 season?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2023 AND p.c_43dk > k.c_gq7j",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 47,
+  "db_id": "db_q4w7",
+  "question": "What percentage of the hives delivered for the 2025 season arrived on time? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(100.0 * count(*) FILTER (WHERE p.c_43dk <= k.c_gq7j) / count(*), 1) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2025",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 48,
+  "db_id": "db_q4w7",
+  "question": "Which driver delivered the most hives in calendar year 2025? Give the driver's full name.",
+  "evidence": "",
+  "SQL": "SELECT s.c_zcd9 FROM t_p47h p JOIN t_ckp3 s ON s.k_7sk8 = p.k_7sk8 WHERE p.c_43dk BETWEEN DATE '2025-01-01' AND DATE '2025-12-31' GROUP BY s.k_7sk8, 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 49,
+  "db_id": "db_q4w7",
+  "question": "What was the average number of frames of bees found in inspections in June 2025? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(c_5hts / 10.0), 2) FROM t_945w WHERE c_5mfp >= '2025-06-01' AND c_5mfp < '2025-07-01'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 50,
+  "db_id": "db_q4w7",
+  "question": "Which yard has the most hives in service? Give the yard code.",
+  "evidence": "",
+  "SQL": "SELECT y.c_fv22 FROM t_8jk7 h JOIN t_8zf7 y ON y.k_ngt6 = h.k_ngt6 WHERE h.c_2ks7 IS NULL GROUP BY 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 51,
+  "db_id": "db_q4w7",
+  "question": "How many hives in service were commissioned more than five years before 15 December 2025?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 h WHERE h.c_2ks7 IS NULL AND to_date(h.c_4c3j::text, 'YYYYDDD') < DATE '2020-12-15'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 52,
+  "db_id": "db_q4w7",
+  "question": "What was the total number of hive-days in the 2024 season?",
+  "evidence": "",
+  "SQL": "SELECT sum(p.c_2qbr - p.c_43dk) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2024 AND p.c_2qbr IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 53,
+  "db_id": "db_q4w7",
+  "question": "On average, how many days did a hive spend in the field on almond contracts? Count only hives that have been removed, and round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(p.c_2qbr - p.c_43dk), 1) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE c.c_352q = 'Almond' AND p.c_2qbr IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 54,
+  "db_id": "db_q4w7",
+  "question": "How many contracts in the 2024 and 2025 seasons received fewer hives than were ordered?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM (SELECT k.k_gw37 AS cid, k.c_266t AS ord, count(p.c_rcd6) AS got FROM t_kk9b k LEFT JOIN t_p47h p ON p.k_gw37 = k.k_gw37 WHERE k.c_zj29 IN (3, 4) AND k.c_q592 IN (2024, 2025) GROUP BY 1, 2) d WHERE got < ord",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 55,
+  "db_id": "db_q4w7",
+  "question": "What was the total shortfall, in hives, for the 2025 season?",
+  "evidence": "",
+  "SQL": "SELECT sum(ord - got) FROM (SELECT k.k_gw37 AS cid, k.c_266t AS ord, count(p.c_rcd6) AS got FROM t_kk9b k LEFT JOIN t_p47h p ON p.k_gw37 = k.k_gw37 WHERE k.c_zj29 IN (3, 4) AND k.c_q592 = 2025 GROUP BY 1, 2) d",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 56,
+  "db_id": "db_q4w7",
+  "question": "What is the total value, in dollars, of the signed contracts for the 2026 season?",
+  "evidence": "",
+  "SQL": "SELECT sum(c_266t * c_6jv8) / 100.0 FROM t_kk9b WHERE c_q592 = 2026 AND c_zj29 = 2",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 57,
+  "db_id": "db_q4w7",
+  "question": "How many hives delivered in the 2024 season were below the contract's minimum grade?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2024 AND p.c_3knh > k.c_tk45",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 58,
+  "db_id": "db_q4w7",
+  "question": "Which crop received the most hives in the 2025 season? Give the crop name.",
+  "evidence": "",
+  "SQL": "SELECT c.c_352q FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE k.c_q592 = 2025 GROUP BY 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 59,
+  "db_id": "db_q4w7",
+  "question": "How many growers have at least one outstanding invoice?",
+  "evidence": "",
+  "SQL": "SELECT count(DISTINCT k.k_fj35) FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 WHERE v.c_j45j = 0 AND v.c_9q3t IN ('D', 'F') AND v.c_7w32 IS NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 60,
+  "db_id": "db_q4w7",
+  "question": "On average, how many days did growers take to pay deposit invoices? Use paid, valid deposits only and round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(c_7w32 - c_9kvq), 1) FROM t_r77r WHERE c_9q3t = 'D' AND c_j45j = 0 AND c_7w32 IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 61,
+  "db_id": "db_q4w7",
+  "question": "How many valid deposit and final invoices were paid late?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_r77r WHERE c_9q3t IN ('D', 'F') AND c_j45j = 0 AND c_7w32 - c_9kvq > 30",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 62,
+  "db_id": "db_q4w7",
+  "question": "For each cooperative that has members, how many member growers does it have? List the cooperative name and the count.",
+  "evidence": "",
+  "SQL": "SELECT co.c_qp3g, count(*) FROM t_8xjv m JOIN t_8xjv co ON co.k_fj35 = m.c_9dfh GROUP BY 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 63,
+  "db_id": "db_q4w7",
+  "question": "What is the contract value, in dollars, of contract 9100?",
+  "evidence": "",
+  "SQL": "SELECT c_266t * c_6jv8 / 100.0 FROM t_kk9b WHERE k_gw37 = 9100",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 64,
+  "db_id": "db_q4w7",
+  "question": "Which field inspector carried out the most inspections in 2025? Give the full name.",
+  "evidence": "",
+  "SQL": "SELECT s.c_zcd9 FROM t_945w i JOIN t_ckp3 s ON s.k_7sk8 = i.k_7sk8 WHERE s.c_kdc3 = 'I' AND i.c_5mfp >= '2025-01-01' AND i.c_5mfp < '2026-01-01' GROUP BY s.k_7sk8, 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 65,
+  "db_id": "db_q4w7",
+  "question": "How many colony losses were there in 2024?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 WHERE c_q4p6 IN (1, 2) AND c_2ks7 BETWEEN DATE '2024-01-01' AND DATE '2024-12-31'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 66,
+  "db_id": "db_q4w7",
+  "question": "What percentage of retired hives were colony losses? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(100.0 * count(*) FILTER (WHERE c_q4p6 IN (1, 2)) / count(*), 1) FROM t_8jk7 WHERE c_2ks7 IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 67,
+  "db_id": "db_q4w7",
+  "question": "What was the average mite load, in percent, across tested inspections in September 2025? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(c_dmc9 / 3.0), 2) FROM t_945w WHERE c_5mfp >= '2025-09-01' AND c_5mfp < '2025-10-01' AND c_dmc9 IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 68,
+  "db_id": "db_q4w7",
+  "question": "How many hives in service had a queen problem at their latest inspection?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM (SELECT DISTINCT ON (i.k_hkv6) i.* FROM t_945w i ORDER BY i.k_hkv6, i.c_5mfp DESC) l JOIN t_8jk7 h ON h.k_hkv6 = l.k_hkv6 WHERE h.c_2ks7 IS NULL AND l.c_m4bv IN (1, 2, 3)",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 69,
+  "db_id": "db_q4w7",
+  "question": "Which region's growers brought in the most net revenue for the 2025 season? Give the region name.",
+  "evidence": "",
+  "SQL": "SELECT CASE g.c_2b7q WHEN 1 THEN 'Upper Basin' WHEN 2 THEN 'Lower Basin' WHEN 3 THEN 'Eastern Foothills' WHEN 4 THEN 'Western Terraces' WHEN 5 THEN 'Delta' WHEN 6 THEN 'Highlands' END FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 WHERE v.c_j45j = 0 AND k.c_q592 = 2025 GROUP BY g.c_2b7q ORDER BY sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 70,
+  "db_id": "db_q4w7",
+  "question": "How many active growers, other than cooperatives, have no contract for the 2026 season?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8xjv g WHERE g.c_5dx4 = 'A' AND g.k_fj35 NOT IN (SELECT c_9dfh FROM t_8xjv WHERE c_9dfh IS NOT NULL) AND NOT EXISTS (SELECT 1 FROM t_kk9b k WHERE k.k_fj35 = g.k_fj35 AND k.c_q592 = 2026)",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 71,
+  "db_id": "db_q4w7",
+  "question": "What was the average price per hive, in dollars, on almond contracts in the 2025 season? Exclude cancelled contracts and round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(k.c_6jv8) / 100, 2) FROM t_kk9b k JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE c.c_352q = 'Almond' AND k.c_q592 = 2025 AND k.c_zj29 <> 5",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 72,
+  "db_id": "db_q4w7",
+  "question": "How many more hives were delivered in the 2025 season than in the 2023 season?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FILTER (WHERE k.c_q592 = 2025) - count(*) FILTER (WHERE k.c_q592 = 2023) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 73,
+  "db_id": "db_q4w7",
+  "question": "Which grower has the largest total block area? Give the grower's name.",
+  "evidence": "",
+  "SQL": "SELECT g.c_qp3g FROM t_3mgb b JOIN t_8xjv g ON g.k_fj35 = b.k_fj35 GROUP BY g.k_fj35, 1 ORDER BY sum(b.c_9p5v) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 74,
+  "db_id": "db_q4w7",
+  "question": "How many closed contracts in the 2025 season were understocked?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM (SELECT k.k_gw37, count(*) / (min(b.c_9p5v) / 100.0) AS rate, min(c.c_xhk2) AS target FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE k.c_q592 = 2025 AND k.c_zj29 = 4 GROUP BY 1) x WHERE rate < target",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 75,
+  "db_id": "db_q4w7",
+  "question": "How much was refunded through valid credit notes on 2024-season contracts, in dollars after discount? Give a positive amount rounded to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT -round(sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100, 2) FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 WHERE v.c_j45j = 0 AND v.c_9q3t = 'C' AND k.c_q592 = 2024",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 76,
+  "db_id": "db_q4w7",
+  "question": "How many different hives were inspected at least once in November 2025?",
+  "evidence": "",
+  "SQL": "SELECT count(DISTINCT k_hkv6) FROM t_945w WHERE c_5mfp >= '2025-11-01' AND c_5mfp < '2025-12-01'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 77,
+  "db_id": "db_q4w7",
+  "question": "What was the average number of brood frames in Carniolan hives inspected in May 2025? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(i.c_2pp4), 2) FROM t_945w i JOIN t_8jk7 h ON h.k_hkv6 = i.k_hkv6 WHERE h.c_p2rg = 1 AND i.c_5mfp >= '2025-05-01' AND i.c_5mfp < '2025-06-01'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 78,
+  "db_id": "db_q4w7",
+  "question": "What percentage of the hives delivered for the 2024 season were grade A? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(100.0 * count(*) FILTER (WHERE p.c_3knh = 'A') / count(*), 1) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2024",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 79,
+  "db_id": "db_q4w7",
+  "question": "What were the first and last delivery dates for contract 9080? Give the first date, then the last.",
+  "evidence": "",
+  "SQL": "SELECT min(c_43dk), max(c_43dk) FROM t_p47h WHERE k_gw37 = 9080",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 80,
+  "db_id": "db_q4w7",
+  "question": "For each of the 2023, 2024 and 2025 seasons, how many contracts were closed? List the season and the count.",
+  "evidence": "",
+  "SQL": "SELECT c_q592, count(*) FROM t_kk9b WHERE c_zj29 = 4 AND c_q592 BETWEEN 2023 AND 2025 GROUP BY 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 81,
+  "db_id": "db_q4w7",
+  "question": "How many hives commissioned in 2025 have already been retired?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 h WHERE to_date(h.c_4c3j::text, 'YYYYDDD') >= DATE '2025-01-01' AND h.c_2ks7 IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 82,
+  "db_id": "db_q4w7",
+  "question": "What is the total area, in hectares, of the blocks covered by booked contracts for the 2025 season?",
+  "evidence": "",
+  "SQL": "SELECT sum(b.c_9p5v) / 100.0 FROM t_kk9b k JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 WHERE k.c_q592 = 2025 AND k.c_zj29 IN (2, 3, 4)",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 83,
+  "db_id": "db_q4w7",
+  "question": "How many different hives have been delivered to at least one contract?",
+  "evidence": "",
+  "SQL": "SELECT count(DISTINCT k_hkv6) FROM t_p47h",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 84,
+  "db_id": "db_q4w7",
+  "question": "How many contracts belong to growers who are currently suspended?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_kk9b k JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 WHERE g.c_5dx4 = 'S'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 85,
+  "db_id": "db_q4w7",
+  "question": "How many inspections did each current yard manager carry out in 2025? List the full name and the count.",
+  "evidence": "",
+  "SQL": "SELECT s.c_zcd9, count(*) FROM t_945w i JOIN t_ckp3 s ON s.k_7sk8 = i.k_7sk8 WHERE s.c_kdc3 = 'M' AND s.c_7q9x IS NULL AND i.c_5mfp >= '2025-01-01' AND i.c_5mfp < '2026-01-01' GROUP BY s.k_7sk8, 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 86,
+  "db_id": "db_q4w7",
+  "question": "What was the average number of frames of bees in inspections of Italian hives in 2024? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(i.c_5hts / 10.0), 2) FROM t_945w i JOIN t_8jk7 h ON h.k_hkv6 = i.k_hkv6 WHERE h.c_p2rg = 2 AND i.c_5mfp >= '2024-01-01' AND i.c_5mfp < '2025-01-01'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 87,
+  "db_id": "db_q4w7",
+  "question": "Which bee yard in the Delta region has the largest capacity? Give the yard code.",
+  "evidence": "",
+  "SQL": "SELECT c_fv22 FROM t_8zf7 WHERE c_mkm8 = 5 ORDER BY c_623g DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 88,
+  "db_id": "db_q4w7",
+  "question": "How many inspections were carried out by staff who have since left the company?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_945w p JOIN t_ckp3 s ON s.k_7sk8 = p.k_7sk8 WHERE s.c_7q9x IS NOT NULL",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 89,
+  "db_id": "db_q4w7",
+  "question": "Which season had the highest average price per hive across closed contracts? Give the season.",
+  "evidence": "",
+  "SQL": "SELECT c_q592 FROM t_kk9b WHERE c_zj29 = 4 GROUP BY 1 ORDER BY avg(c_6jv8) DESC LIMIT 1",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 90,
+  "db_id": "db_q4w7",
+  "question": "How many valid final invoices were issued in fiscal year 2024?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_r77r WHERE c_9q3t = 'F' AND c_j45j = 0 AND c_9kvq BETWEEN DATE '2023-07-01' AND DATE '2024-06-30'",
+  "difficulty": "moderate",
+  "gold": "novel"
+ },
+ {
+  "question_id": 91,
+  "db_id": "db_q4w7",
+  "question": "For each of the 2023, 2024 and 2025 seasons, what percentage of delivered hives arrived on time? List the season and the percentage rounded to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT k.c_q592, round(100.0 * count(*) FILTER (WHERE p.c_43dk <= k.c_gq7j) / count(*), 1) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 BETWEEN 2023 AND 2025 GROUP BY 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 92,
+  "db_id": "db_q4w7",
+  "question": "Which grower had the largest total shortfall across the 2023 to 2025 seasons? Give the grower's name.",
+  "evidence": "",
+  "SQL": "SELECT g.c_qp3g FROM (SELECT k.k_gw37 AS cid, k.c_266t AS ord, count(p.c_rcd6) AS got FROM t_kk9b k LEFT JOIN t_p47h p ON p.k_gw37 = k.k_gw37 WHERE k.c_zj29 IN (3, 4) AND k.c_q592 BETWEEN 2023 AND 2025 GROUP BY 1, 2) d JOIN t_kk9b k ON k.k_gw37 = d.cid JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 GROUP BY g.k_fj35, 1 ORDER BY sum(ord - got) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 93,
+  "db_id": "db_q4w7",
+  "question": "How many hives were delivered to a contract in every season from 2023 to 2025?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM (SELECT p.k_hkv6 FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 BETWEEN 2023 AND 2025 GROUP BY 1 HAVING count(DISTINCT k.c_q592) = 3) x",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 94,
+  "db_id": "db_q4w7",
+  "question": "What percentage of the hives in service were strong at their latest inspection? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(100.0 * count(*) FILTER (WHERE l.c_5hts >= 80) / count(*), 1) FROM t_8jk7 h JOIN (SELECT DISTINCT ON (i.k_hkv6) i.* FROM t_945w i ORDER BY i.k_hkv6, i.c_5mfp DESC) l ON l.k_hkv6 = h.k_hkv6 WHERE h.c_2ks7 IS NULL",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 95,
+  "db_id": "db_q4w7",
+  "question": "On average, how many days passed between consecutive inspections of the same hive in 2025? Use only pairs of inspections that both took place in 2025, count whole calendar days between the inspection dates, and round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(d), 1) FROM (SELECT c_5mfp::date - lag(c_5mfp::date) OVER (PARTITION BY k_hkv6 ORDER BY c_5mfp) AS d FROM t_945w WHERE c_5mfp >= '2025-01-01' AND c_5mfp < '2026-01-01') x WHERE d IS NOT NULL",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 96,
+  "db_id": "db_q4w7",
+  "question": "Which yard had the highest share of tested 2025 inspections over the mite treatment threshold? Count each inspection under the hive's home yard and give the yard code.",
+  "evidence": "",
+  "SQL": "SELECT y.c_fv22 FROM t_945w i JOIN t_8jk7 h ON h.k_hkv6 = i.k_hkv6 JOIN t_8zf7 y ON y.k_ngt6 = h.k_ngt6 WHERE i.c_dmc9 IS NOT NULL AND i.c_5mfp >= '2025-01-01' AND i.c_5mfp < '2026-01-01' GROUP BY 1 ORDER BY avg(CASE WHEN i.c_dmc9 > 9 THEN 1.0 ELSE 0 END) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 97,
+  "db_id": "db_q4w7",
+  "question": "What was the net revenue per hive delivered for the 2025 season, in dollars? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round((SELECT sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100 FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 WHERE v.c_j45j = 0 AND k.c_q592 = 2025) / (SELECT count(*) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 WHERE k.c_q592 = 2025), 2)",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 98,
+  "db_id": "db_q4w7",
+  "question": "For each cooperative whose members brought in net revenue for the 2024 season, how much did they bring in? List the cooperative name and the amount in dollars rounded to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT co.c_qp3g, round(sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100, 2) FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 JOIN t_8xjv m ON m.k_fj35 = k.k_fj35 JOIN t_8xjv co ON co.k_fj35 = m.c_9dfh WHERE v.c_j45j = 0 AND k.c_q592 = 2024 GROUP BY co.k_fj35, 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 99,
+  "db_id": "db_q4w7",
+  "question": "Which crop had the highest average price per hive in the 2025 season, excluding cancelled contracts? Give the crop name.",
+  "evidence": "",
+  "SQL": "SELECT c.c_352q FROM t_kk9b k JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE k.c_q592 = 2025 AND k.c_zj29 <> 5 GROUP BY 1 ORDER BY avg(k.c_6jv8) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 100,
+  "db_id": "db_q4w7",
+  "question": "Among growers with net revenue in both the 2024 and 2025 seasons, how many brought in more in 2025 than in 2024?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM (SELECT k.k_fj35, sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) FILTER (WHERE k.c_q592 = 2024) AS a, sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) FILTER (WHERE k.c_q592 = 2025) AS b FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 WHERE v.c_j45j = 0 GROUP BY 1) x WHERE a IS NOT NULL AND b IS NOT NULL AND b > a",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 101,
+  "db_id": "db_q4w7",
+  "question": "In which month of 2025 were the most tested inspections over the mite treatment threshold? Give the month number.",
+  "evidence": "",
+  "SQL": "SELECT extract(month FROM c_5mfp)::int FROM t_945w WHERE c_dmc9 > 9 AND c_5mfp >= '2025-01-01' AND c_5mfp < '2026-01-01' GROUP BY 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 102,
+  "db_id": "db_q4w7",
+  "question": "What is the median number of days growers took to pay final invoices? Use paid, valid final invoices and round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(percentile_cont(0.5) WITHIN GROUP (ORDER BY c_7w32 - c_9kvq)::numeric, 1) FROM t_r77r WHERE c_9q3t = 'F' AND c_j45j = 0 AND c_7w32 IS NOT NULL",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 103,
+  "db_id": "db_q4w7",
+  "question": "Which field inspector found the highest average mite load in 2025, among inspectors with at least 100 tested inspections that year? Give the full name.",
+  "evidence": "",
+  "SQL": "SELECT s.c_zcd9 FROM t_945w i JOIN t_ckp3 s ON s.k_7sk8 = i.k_7sk8 WHERE s.c_kdc3 = 'I' AND i.c_dmc9 IS NOT NULL AND i.c_5mfp >= '2025-01-01' AND i.c_5mfp < '2026-01-01' GROUP BY s.k_7sk8, 1 HAVING count(*) >= 100 ORDER BY avg(i.c_dmc9) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 104,
+  "db_id": "db_q4w7",
+  "question": "For hives retired as dead-outs in 2025, what was the average number of frames of bees at their last inspection? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(l.c_5hts / 10.0), 2) FROM t_8jk7 h JOIN (SELECT DISTINCT ON (i.k_hkv6) i.* FROM t_945w i ORDER BY i.k_hkv6, i.c_5mfp DESC) l ON l.k_hkv6 = h.k_hkv6 WHERE h.c_q4p6 = 1 AND h.c_2ks7 BETWEEN DATE '2025-01-01' AND DATE '2025-12-31'",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 105,
+  "db_id": "db_q4w7",
+  "question": "Which crop brought in the most net revenue per contracted hectare in the 2025 season? Use booked contracts only: the crop's net revenue on those contracts divided by the total area of their blocks. Give the crop name.",
+  "evidence": "",
+  "SQL": "SELECT c.c_352q FROM (SELECT k.k_gw37 AS cid, sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) AS rev FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 WHERE v.c_j45j = 0 GROUP BY 1) r JOIN t_kk9b k ON k.k_gw37 = r.cid JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE k.c_q592 = 2025 AND k.c_zj29 IN (2, 3, 4) GROUP BY 1 ORDER BY sum(r.rev) / sum(b.c_9p5v) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 106,
+  "db_id": "db_q4w7",
+  "question": "How many hives in service have never been delivered to a contract?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_8jk7 h WHERE h.c_2ks7 IS NULL AND NOT EXISTS (SELECT 1 FROM t_p47h p WHERE p.k_hkv6 = h.k_hkv6)",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 107,
+  "db_id": "db_q4w7",
+  "question": "What is the average age, in days, of the hives in service on 15 December 2025? Round to the nearest whole day.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(DATE '2025-12-15' - to_date(h.c_4c3j::text, 'YYYYDDD'))) FROM t_8jk7 h WHERE h.c_2ks7 IS NULL",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 108,
+  "db_id": "db_q4w7",
+  "question": "Which driver delivered the most late hives in the 2024 season? Give the full name.",
+  "evidence": "",
+  "SQL": "SELECT s.c_zcd9 FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_ckp3 s ON s.k_7sk8 = p.k_7sk8 WHERE k.c_q592 = 2024 AND p.c_43dk > k.c_gq7j GROUP BY s.k_7sk8, 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 109,
+  "db_id": "db_q4w7",
+  "question": "For the 2025 season, how many closed contracts were there for each minimum grade, and how many of them had at least one hive delivered below that grade? List the grade, the number of contracts and the number with a grade shortfall.",
+  "evidence": "",
+  "SQL": "SELECT k.c_tk45, count(*), count(*) FILTER (WHERE EXISTS (SELECT 1 FROM t_p47h p WHERE p.k_gw37 = k.k_gw37 AND p.c_3knh > k.c_tk45)) FROM t_kk9b k WHERE k.c_q592 = 2025 AND k.c_zj29 = 4 GROUP BY 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 110,
+  "db_id": "db_q4w7",
+  "question": "Which grower has the invoice that has been outstanding the longest as of 15 December 2025? Give the grower's name.",
+  "evidence": "",
+  "SQL": "SELECT g.c_qp3g FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 WHERE v.c_j45j = 0 AND v.c_9q3t IN ('D', 'F') AND v.c_7w32 IS NULL ORDER BY v.c_9kvq LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 111,
+  "db_id": "db_q4w7",
+  "question": "How much is outstanding for each credit tier, in dollars after discounts? List the tier and the amount rounded to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT g.c_wts6, round(sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) / 100, 2) FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 WHERE v.c_j45j = 0 AND v.c_9q3t IN ('D', 'F') AND v.c_7w32 IS NULL GROUP BY 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 112,
+  "db_id": "db_q4w7",
+  "question": "For how many deliveries was the hive queenless at its last inspection before the delivery date?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM t_p47h p JOIN LATERAL (SELECT i.c_m4bv AS q FROM t_945w i WHERE i.k_hkv6 = p.k_hkv6 AND i.c_5mfp < p.c_43dk ORDER BY i.c_5mfp DESC LIMIT 1) l ON true WHERE l.q = 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 113,
+  "db_id": "db_q4w7",
+  "question": "Among the Carniolan hives still in service, in which year were the most commissioned? Give the year.",
+  "evidence": "",
+  "SQL": "SELECT extract(year FROM to_date(h.c_4c3j::text, 'YYYYDDD'))::int FROM t_8jk7 h WHERE h.c_2ks7 IS NULL AND h.c_p2rg = 1 GROUP BY 1 ORDER BY count(*) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 114,
+  "db_id": "db_q4w7",
+  "question": "Which cooperative's members own the largest total block area? Give the cooperative's name.",
+  "evidence": "",
+  "SQL": "SELECT co.c_qp3g FROM t_3mgb b JOIN t_8xjv m ON m.k_fj35 = b.k_fj35 JOIN t_8xjv co ON co.k_fj35 = m.c_9dfh GROUP BY co.k_fj35, 1 ORDER BY sum(b.c_9p5v) DESC LIMIT 1",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 115,
+  "db_id": "db_q4w7",
+  "question": "What was the average stocking rate, in hives per hectare, of closed almond contracts in the 2025 season? Round to 2 decimal places.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(n / ha), 2) FROM (SELECT k.k_gw37, count(*) AS n, min(b.c_9p5v) / 100.0 AS ha FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE c.c_352q = 'Almond' AND k.c_q592 = 2025 AND k.c_zj29 = 4 GROUP BY 1) x",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 116,
+  "db_id": "db_q4w7",
+  "question": "How many growers had booked contracts in each of the 2023, 2024 and 2025 seasons?",
+  "evidence": "",
+  "SQL": "SELECT count(*) FROM (SELECT k_fj35 FROM t_kk9b WHERE c_zj29 IN (2, 3, 4) AND c_q592 BETWEEN 2023 AND 2025 GROUP BY 1 HAVING count(DISTINCT c_q592) = 3) x",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 117,
+  "db_id": "db_q4w7",
+  "question": "What percentage of the 2024 season's net revenue came from almond contracts? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(100 * sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)) FILTER (WHERE c.c_352q = 'Almond') / sum(v.c_rdk7 * (1 - v.c_p5f2 / 10000.0)), 1) FROM t_r77r v JOIN t_kk9b k ON k.k_gw37 = v.k_gw37 JOIN t_3mgb b ON b.k_8r54 = k.k_8r54 JOIN t_z66c c ON c.k_q4xd = b.k_q4xd WHERE v.c_j45j = 0 AND k.c_q592 = 2024",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 118,
+  "db_id": "db_q4w7",
+  "question": "For the 2025 season, how many hives were delivered to growers in each region? List the region name and the number of hives.",
+  "evidence": "",
+  "SQL": "SELECT CASE g.c_2b7q WHEN 1 THEN 'Upper Basin' WHEN 2 THEN 'Lower Basin' WHEN 3 THEN 'Eastern Foothills' WHEN 4 THEN 'Western Terraces' WHEN 5 THEN 'Delta' WHEN 6 THEN 'Highlands' END, count(*) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_8xjv g ON g.k_fj35 = k.k_fj35 WHERE k.c_q592 = 2025 GROUP BY g.c_2b7q",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 119,
+  "db_id": "db_q4w7",
+  "question": "On average, how many days before the bloom start were booked 2026-season contracts signed? Round to 1 decimal place.",
+  "evidence": "",
+  "SQL": "SELECT round(avg(c_gq7j - c_n8jr), 1) FROM t_kk9b WHERE c_q592 = 2026 AND c_zj29 IN (2, 3, 4)",
+  "difficulty": "challenging",
+  "gold": "novel"
+ },
+ {
+  "question_id": 120,
+  "db_id": "db_q4w7",
+  "question": "How many of the hives delivered for the 2025 season have since been retired?",
+  "evidence": "",
+  "SQL": "SELECT count(DISTINCT p.k_hkv6) FROM t_p47h p JOIN t_kk9b k ON k.k_gw37 = p.k_gw37 JOIN t_8jk7 h ON h.k_hkv6 = p.k_hkv6 WHERE k.c_q592 = 2025 AND h.c_2ks7 IS NOT NULL",
+  "difficulty": "challenging",
+  "gold": "novel"
+ }
+]

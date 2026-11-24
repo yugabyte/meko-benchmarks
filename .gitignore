@@ -12,3 +12,9 @@ runs/
 # fetched at setup time, see datasets/locomo/README.md
 datasets/locomo/locomo10/
 !docs/runs/
+# text-to-sql: downloads and the sets built from them are not redistributed (datasets/text-to-sql/README.md);
+# the novel set is this repository's own
+datasets/text-to-sql/*
+!datasets/text-to-sql/README.md
+!datasets/text-to-sql/fetch.sh
+!datasets/text-to-sql/novel/

@@ -1,0 +1,59 @@
+scenario,scenario_title,arm,arm_name,model,questions,correct,accuracy_pct,baseline_accuracy_pct,change_pts,p_value,significant_p05,cost_per_question_usd,cost_per_correct_usd,cost_per_correct_pct_of_baseline,seconds_per_question,turns_per_question
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A0,No context (tools only),Haiku,120,31,25.8,25.8,,,,0.0043,0.0167,,22.9,20.7
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A0,No context (tools only),Sonnet,120,65,54.2,54.2,,,,0.0511,0.0943,,19.5,17.9
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A0,No context (tools only),Opus,120,89,74.2,74.2,,,,0.0958,0.1292,,26.0,16.0
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A1,Comments,Haiku,120,107,89.2,25.8,63.3,0.0,1,0.0014,0.0016,9.3,9.8,6.1
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A1,Comments,Sonnet,120,107,89.2,54.2,35.0,0.0,1,0.0181,0.0203,21.5,10.5,5.0
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A1,Comments,Opus,120,109,90.8,74.2,16.7,0.0001,1,0.0433,0.0477,36.9,14.8,5.8
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A3,Documentation file in the prompt,Haiku,120,116,96.7,25.8,70.8,0.0,1,0.001,0.001,5.9,7.0,2.6
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A3,Documentation file in the prompt,Sonnet,120,119,99.2,54.2,45.0,0.0,1,0.0134,0.0135,14.3,7.1,1.9
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A3,Documentation file in the prompt,Opus,120,120,100.0,74.2,25.8,0.0,1,0.0283,0.0283,21.9,9.5,2.2
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A4t,Meko search,Haiku,120,113,94.2,25.8,68.3,0.0,1,0.0019,0.002,12.1,13.4,5.8
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A4t,Meko search,Sonnet,120,113,94.2,54.2,40.0,0.0,1,0.0256,0.0272,28.8,12.7,4.7
+novel,"Small novel database with random names (pollination contractor, 10 tables)",A4t,Meko search,Opus,120,116,96.7,74.2,22.5,0.0,1,0.0599,0.062,48.0,17.0,5.3
+bird,BIRD Mini-Dev with cryptic names (11 databases),A0,No context (tools only),Haiku,487,217,44.6,44.6,,,,0.0019,0.0042,,18.4,9.4
+bird,BIRD Mini-Dev with cryptic names (11 databases),A0,No context (tools only),Sonnet,487,293,60.2,60.2,,,,0.0212,0.0352,,15.7,7.4
+bird,BIRD Mini-Dev with cryptic names (11 databases),A0,No context (tools only),Opus,487,371,76.2,76.2,,,,0.0465,0.061,,22.3,7.5
+bird,BIRD Mini-Dev with cryptic names (11 databases),A3,Documentation file in the prompt,Haiku,487,236,48.5,44.6,3.9,0.0163,1,0.0013,0.0027,65.0,10.9,3.2
+bird,BIRD Mini-Dev with cryptic names (11 databases),A3,Documentation file in the prompt,Sonnet,487,315,64.7,60.2,4.5,0.0026,1,0.0157,0.0243,69.1,11.1,2.0
+bird,BIRD Mini-Dev with cryptic names (11 databases),A3,Documentation file in the prompt,Opus,487,376,77.2,76.2,1.0,0.4583,0,0.0327,0.0423,69.4,14.4,2.3
+bird,BIRD Mini-Dev with cryptic names (11 databases),A4t,Meko search,Haiku,487,225,46.2,44.6,1.6,0.3497,0,0.0027,0.0058,139.2,17.2,5.8
+bird,BIRD Mini-Dev with cryptic names (11 databases),A4t,Meko search,Sonnet,487,295,60.6,60.2,0.4,0.8776,0,0.0323,0.0533,151.4,18.3,6.1
+bird,BIRD Mini-Dev with cryptic names (11 databases),A4t,Meko search,Opus,487,384,78.9,76.2,2.7,0.0351,1,0.0717,0.091,149.1,34.2,5.9
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A0,No context (tools only),Haiku,327,34,10.4,10.4,,,,0.0036,0.0342,,22.0,13.4
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A0,No context (tools only),Sonnet,327,51,15.6,15.6,,,,0.0472,0.3028,,24.0,11.1
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A0,No context (tools only),Opus,327,58,17.7,17.7,,,,0.0993,0.5599,,29.0,11.1
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A3,Documentation file in the prompt,Haiku,327,81,24.8,10.4,14.4,0.0,1,0.0422,0.1704,497.8,19.9,5.2
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A3,Documentation file in the prompt,Sonnet,327,98,30.0,15.6,14.4,0.0,1,0.1324,0.4417,145.9,17.5,3.0
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A3,Documentation file in the prompt,Opus,327,112,34.3,17.7,16.5,0.0,1,0.2042,0.5962,106.5,24.2,3.6
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A4t,Meko search,Haiku,327,66,20.2,10.4,9.8,0.0,1,0.0076,0.0377,110.1,78.9,11.8
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A4t,Meko search,Sonnet,327,80,24.5,15.6,8.9,0.0,1,0.0912,0.3729,123.1,56.5,9.2
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A4t,Meko search,Opus,327,92,28.1,17.7,10.4,0.0,1,0.1992,0.7079,126.4,63.6,9.5
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A3c-55,Shortened file (~55k tokens),Haiku,327,78,23.9,10.4,13.5,0.0,1,0.0058,0.0245,71.6,21.3,7.8
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A3c-35,Shortened file (~35k tokens),Haiku,327,66,20.2,10.4,9.8,0.0,1,0.0054,0.0268,78.2,23.0,7.6
+lsb,"LiveSQLBench-Large (about 1,000 columns per database)",A3c-35+M,Shortened file (~35k tokens) + Meko search,Haiku,327,75,22.9,10.4,12.5,0.0,1,0.0063,0.0274,79.9,36.5,7.8
+fleet,Fleet of 32 databases behind one agent,A0,No context (tools only),Haiku,200,7,3.5,3.5,,,,0.0019,0.0547,,21.0,11.8
+fleet,Fleet of 32 databases behind one agent,A0,No context (tools only),Sonnet,200,35,17.5,17.5,,,,0.0323,0.1845,,20.6,10.3
+fleet,Fleet of 32 databases behind one agent,A0,No context (tools only),Opus,200,35,17.5,17.5,,,,0.0601,0.3433,,25.3,10.8
+fleet,Fleet of 32 databases behind one agent,A1,Comments,Haiku,200,26,13.0,3.5,9.5,0.0002,1,0.0037,0.0286,52.2,21.7,11.4
+fleet,Fleet of 32 databases behind one agent,A1,Comments,Sonnet,200,62,31.0,17.5,13.5,0.0,1,0.0473,0.1525,82.7,21.5,9.1
+fleet,Fleet of 32 databases behind one agent,A1,Comments,Opus,200,77,38.5,17.5,21.0,0.0,1,0.0932,0.242,70.5,26.9,9.5
+fleet,Fleet of 32 databases behind one agent,A3,Index of databases and tables in the prompt,Haiku,200,51,25.5,3.5,22.0,0.0,1,0.0042,0.0164,29.9,18.4,8.5
+fleet,Fleet of 32 databases behind one agent,A3,Index of databases and tables in the prompt,Sonnet,200,73,36.5,17.5,19.0,0.0,1,0.0503,0.1378,74.7,15.2,6.1
+fleet,Fleet of 32 databases behind one agent,A3,Index of databases and tables in the prompt,Opus,200,91,45.5,17.5,28.0,0.0,1,0.0969,0.2129,62.0,21.7,6.3
+fleet,Fleet of 32 databases behind one agent,A3f-150,"One file of every table with descriptions, keys and some columns (~150k tokens)",Haiku,200,38,19.0,3.5,15.5,0.0,1,0.0492,0.2591,473.2,32.0,9.0
+fleet,Fleet of 32 databases behind one agent,A3f-150,"One file of every table with descriptions, keys and some columns (~150k tokens)",Sonnet,200,69,34.5,17.5,17.0,0.0,1,0.1731,0.5019,272.1,15.3,5.3
+fleet,Fleet of 32 databases behind one agent,A3f-150,"One file of every table with descriptions, keys and some columns (~150k tokens)",Opus,200,89,44.5,17.5,27.0,0.0,1,0.2283,0.5129,149.4,20.2,5.1
+fleet,Fleet of 32 databases behind one agent,A3f-80,One file of every table with descriptions and keys (~80k tokens),Haiku,200,45,22.5,3.5,19.0,0.0,1,0.0344,0.1531,279.6,16.7,8.3
+fleet,Fleet of 32 databases behind one agent,A3f-80,One file of every table with descriptions and keys (~80k tokens),Sonnet,200,70,35.0,17.5,17.5,0.0,1,0.1325,0.3786,205.3,15.8,6.0
+fleet,Fleet of 32 databases behind one agent,A3f-80,One file of every table with descriptions and keys (~80k tokens),Opus,200,85,42.5,17.5,25.0,0.0,1,0.1664,0.3915,114.1,25.1,5.8
+fleet,Fleet of 32 databases behind one agent,A3f-80+M,The ~80k-token file + Meko search,Haiku,200,65,32.5,3.5,29.0,0.0,1,0.0441,0.1358,248.0,25.2,8.2
+fleet,Fleet of 32 databases behind one agent,A3f-80+M,The ~80k-token file + Meko search,Sonnet,200,85,42.5,17.5,25.0,0.0,1,0.1409,0.3316,179.8,21.4,6.3
+fleet,Fleet of 32 databases behind one agent,A3f-80+M,The ~80k-token file + Meko search,Opus,200,102,51.0,17.5,33.5,0.0,1,0.2459,0.4822,140.5,30.7,6.2
+fleet,Fleet of 32 databases behind one agent,A4t,Meko search,Haiku,200,54,27.0,3.5,23.5,0.0,1,0.0059,0.0219,39.9,63.7,9.5
+fleet,Fleet of 32 databases behind one agent,A4t,Meko search,Sonnet,200,80,40.0,17.5,22.5,0.0,1,0.0765,0.1914,103.7,51.0,7.7
+fleet,Fleet of 32 databases behind one agent,A4t,Meko search,Opus,200,106,53.0,17.5,35.5,0.0,1,0.1588,0.2996,87.3,53.4,7.5
+learn,"Learning from corrections (LiveSQLBench, 11 databases, Sonnet)",L-S,No learning,Sonnet,216,32,14.8,14.8,,,,0.059,0.3986,,18.6,8.6
+learn,"Learning from corrections (LiveSQLBench, 11 databases, Sonnet)",L-F,Lessons file in the prompt,Sonnet,216,42,19.4,14.8,4.6,0.0525,0,0.0911,0.4685,117.5,27.3,8.0
+learn,"Learning from corrections (LiveSQLBench, 11 databases, Sonnet)",L-Mm,Meko memory,Sonnet,216,44,20.4,14.8,5.6,0.0357,1,0.0845,0.4148,104.1,149.7,9.6
+learn,"Learning from corrections (LiveSQLBench, 11 databases, Sonnet)",L-Mk,Meko knowledge base,Sonnet,216,38,17.6,14.8,2.8,0.2632,0,0.0813,0.4619,115.9,228.2,9.9
