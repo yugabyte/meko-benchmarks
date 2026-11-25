@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" role="img" aria-label="what the harness asks Meko for">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#1a1a1a"/></marker></defs>
+<rect width="760" height="330" fill="white"/>
+<rect x="30" y="30" width="700" height="130" rx="8" fill="none" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="42" y="48" text-anchor="start" font-size="11.5" font-weight="600" fill="#555555">phase 1 · per conversation</text>
+<rect x="50" y="70" width="200" height="60" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="150.0" y="93.0" text-anchor="middle" font-size="13" font-weight="500" fill="#1a1a1a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">datapack_create</text>
+<text x="150.0" y="112.0" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">named after run and unit</text>
+<rect x="285" y="70" width="180" height="60" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="375.0" y="93.0" text-anchor="middle" font-size="13" font-weight="500" fill="#1a1a1a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">conversation_create</text>
+<text x="375.0" y="112.0" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">one per session</text>
+<rect x="500" y="70" width="210" height="60" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="605.0" y="93.0" text-anchor="middle" font-size="13" font-weight="500" fill="#1a1a1a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">conversation_add_message</text>
+<text x="605.0" y="112.0" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">per turn or pair · backdated</text>
+<path d="M250 100 L285 100" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M465 100 L500 100" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="30" y="180" width="700" height="120" rx="8" fill="none" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="42" y="198" text-anchor="start" font-size="11.5" font-weight="600" fill="#555555">phase 2 · per question</text>
+<rect x="50" y="220" width="250" height="60" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="175.0" y="243.0" text-anchor="middle" font-size="13" font-weight="500" fill="#1a1a1a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">context_search</text>
+<text x="175.0" y="262.0" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">force_source=conversation · once</text>
+<rect x="380" y="220" width="250" height="60" rx="6" fill="#f6f6f6" stroke="#1a1a1a" stroke-width="1.2"/>
+<text x="505.0" y="243.0" text-anchor="middle" font-size="13" font-weight="500" fill="#1a1a1a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">memory_search</text>
+<text x="505.0" y="262.0" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">limit=k · for k in 10, 25, 50</text>
+<path d="M300 250 L380 250" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="380" y="320" text-anchor="middle" font-size="11.5" font-weight="400" fill="#555555">public MCP tools only, over HTTP with a Bearer key; every call carries datapack_id and agent_id</text>
+</svg>

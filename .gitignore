@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+common/.token
+runs/
+*.log
+.ipynb_checkpoints/
+# fetched at setup time, see datasets/locomo/README.md
+datasets/locomo/locomo10/
+!docs/runs/

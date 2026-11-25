@@ -1,0 +1,30 @@
+{
+ "finished": "2026-10-16 23:04",
+ "answer_model": "gpt-5.6-terra",
+ "temperature": null,
+ "prompt": "two-step",
+ "trial": null,
+ "rejudged_from": null,
+ "context": "memories+turns",
+ "judge": "cognis",
+ "judge_model": "gpt-4.1",
+ "prompts": {
+  "answer": {
+   "name": "mem0 answer prompt (MEM0_ANSWER), then the compression step (COMPRESS_PROMPT + FORMAT_RULES)",
+   "file": "prompts.py",
+   "sha": "d3bc517c"
+  },
+  "adversarial": {
+   "name": "LoCoMo paper short-answer prompt + abstain hint",
+   "file": "score.py",
+   "sha": "889303a1"
+  },
+  "judge": {
+   "name": "Lyzr Cognis judge (COGNIS_JUDGE)",
+   "file": "prompts.py",
+   "sha": "dc670903"
+  }
+ },
+ "prompt_overrides": [],
+ "rows": 1986
+}
