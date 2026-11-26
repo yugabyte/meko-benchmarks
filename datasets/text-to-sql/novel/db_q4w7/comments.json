@@ -1,0 +1,121 @@
+{
+ "tables": {
+  "t_z66c": {
+   "comment": "Crop reference list. One row per crop the company pollinates, with the recommended stocking density (hives per hectare) used to size orders.",
+   "columns": {
+    "k_q4xd": "Crop id. Joins to the block table's crop id.",
+    "c_352q": "Crop name.",
+    "c_xhk2": "Recommended number of hives per hectare for this crop."
+   }
+  },
+  "t_8xjv": {
+   "comment": "Customers: fruit and seed growers who lease hives for the bloom, and the cooperatives some of them belong to. Cooperatives are rows of this table too: they own no blocks, and their members point to them through the parent grower column.",
+   "columns": {
+    "k_fj35": "Grower id. Joins to block and contract.",
+    "c_qp3g": "Grower's registered business name.",
+    "c_2b7q": "Region of the grower's head office. Codes: 1 = Upper Basin, 2 = Lower Basin, 3 = Eastern Foothills, 4 = Western Terraces, 5 = Delta, 6 = Highlands.",
+    "c_5dx4": "Account status: A = active, S = suspended (payment hold, no new deliveries), X = closed (former customer).",
+    "c_5q2z": "Date the grower became a customer.",
+    "c_wts6": "Credit tier: 1 = preferred, 2 = standard, 3 = watch list (must prepay).",
+    "c_9dfh": "For a cooperative member, the grower id of its cooperative (a row in this same table). Empty for cooperatives and independent growers."
+   }
+  },
+  "t_3mgb": {
+   "comment": "Orchard blocks (fields) owned by growers. Each block grows one crop. Contracts are written per block and season.",
+   "columns": {
+    "k_8r54": "Block id. Joins to contract.",
+    "k_fj35": "Owner of the block. Joins to grower.",
+    "k_q4xd": "Crop grown on the block. Joins to crop.",
+    "c_v34z": "Grower's own name for the block. Not unique.",
+    "c_9p5v": "Block area in hundredths of a hectare (divide by 100 for hectares).",
+    "c_c4rw": "1 = irrigated block, 0 = dryland.",
+    "c_j52k": "Elevation in metres."
+   }
+  },
+  "t_8zf7": {
+   "comment": "Bee yards (apiaries) where hives are kept when they are not out on a contract. Every hive has one home yard.",
+   "columns": {
+    "k_ngt6": "Yard id. Joins to the hive table's home yard.",
+    "c_fv22": "Short yard code, Y01 to Y14.",
+    "c_mkm8": "Region the yard is in. Codes: 1 = Upper Basin, 2 = Lower Basin, 3 = Eastern Foothills, 4 = Western Terraces, 5 = Delta, 6 = Highlands.",
+    "c_623g": "Maximum number of hives the yard can hold.",
+    "c_758d": "End date of the land lease. Empty means the company owns the yard."
+   }
+  },
+  "t_8jk7": {
+   "comment": "Every hive (colony) the company has owned, in service or retired.",
+   "columns": {
+    "k_hkv6": "Hive id. Joins to inspection and placement.",
+    "k_ngt6": "Home yard of the hive. Joins to yard.",
+    "c_4c3j": "Date the hive was set up, as a number in YYYYDDD form: the year followed by the day of the year (2024032 is 1 February 2024). Convert with to_date(value::text, 'YYYYDDD').",
+    "c_p2rg": "Bee stock (breed): 1 = Carniolan, 2 = Italian, 3 = Buckfast, 4 = local mixed stock.",
+    "c_2ks7": "Date the hive was taken out of service. Empty means the hive is in service.",
+    "c_q4p6": "Why the hive was retired: 1 = dead-out (colony died), 2 = absconded (colony left), 3 = sold, 4 = combined into another colony. Empty for hives in service."
+   }
+  },
+  "t_ckp3": {
+   "comment": "Employees: field inspectors, drivers, yard managers and office staff, current and former.",
+   "columns": {
+    "k_7sk8": "Staff id. Joins to inspection (the inspector) and placement (the driver).",
+    "c_zcd9": "Employee's full name.",
+    "c_kdc3": "Role: I = field inspector, D = driver, M = yard manager, O = office.",
+    "c_2r6q": "Start date.",
+    "c_7q9x": "Leaving date. Empty for current staff."
+   }
+  },
+  "t_945w": {
+   "comment": "Hive inspections. One row per inspection of one hive: colony strength, brood, mite test result and queen status. Hives are inspected about monthly from February to November, and again a few days before every delivery to a contract.",
+   "columns": {
+    "c_z8pq": "Inspection id.",
+    "k_hkv6": "Hive inspected. Joins to hive.",
+    "k_7sk8": "Who did the inspection. Joins to staff.",
+    "c_5mfp": "Date and time of the inspection.",
+    "c_5hts": "Frames of bees (colony strength) times 10: 85 means 8.5 frames covered with bees.",
+    "c_2pp4": "Number of frames with brood.",
+    "c_dmc9": "Varroa mites counted in an alcohol wash of 300 bees. Empty when no mite test was done. Mite load in percent is this count divided by 3.",
+    "c_m4bv": "Queen status: 0 = queenright (laying queen seen), 1 = queenless, 2 = virgin or unmated queen, 3 = drone-laying queen, 9 = not checked."
+   }
+  },
+  "t_kk9b": {
+   "comment": "Pollination contracts. One row per grower, block and bloom season: the hives ordered, the price per hive, the minimum strength the grower requires, the bloom window and the contract status.",
+   "columns": {
+    "k_gw37": "Contract id. Joins to placement and invoice.",
+    "k_fj35": "Customer. Joins to grower.",
+    "k_8r54": "Block to be pollinated. Joins to block.",
+    "c_q592": "Season: the calendar year of the bloom.",
+    "c_266t": "Number of hives ordered.",
+    "c_6jv8": "Price per hive in cents.",
+    "c_tk45": "Minimum hive strength grade the grower requires: A, B or C (see the grades in the glossary). A hive meets the requirement when its grade is the same or better (A is best).",
+    "c_zj29": "Status: 1 = quoted, 2 = signed, 3 = in field (hives delivered, not all removed), 4 = closed (completed), 5 = cancelled.",
+    "c_gq7j": "Expected first day of bloom. Hives should be in place by this date.",
+    "c_nrd5": "Expected last day of bloom.",
+    "c_n8jr": "Date the grower signed. Empty for quotes."
+   }
+  },
+  "t_p47h": {
+   "comment": "Hive placements: one row per hive delivered to a contract, with the delivery and removal dates, the hive's strength grade at delivery and the driver who delivered it.",
+   "columns": {
+    "c_rcd6": "Placement id.",
+    "k_gw37": "Contract the hive was delivered for. Joins to contract.",
+    "k_hkv6": "Hive delivered. Joins to hive.",
+    "c_43dk": "Delivery date.",
+    "c_2qbr": "Removal date. Empty while the hive is still in the field.",
+    "c_3knh": "Strength grade of the hive at delivery, from its pre-delivery inspection: A, B, C or R (reject).",
+    "k_7sk8": "Driver who delivered the hive. Joins to staff."
+   }
+  },
+  "t_r77r": {
+   "comment": "Invoices and credit notes raised against contracts: a deposit at signing, a final invoice after the hives are removed, and credit notes for refunds.",
+   "columns": {
+    "c_5dd6": "Invoice number.",
+    "k_gw37": "Contract invoiced. Joins to contract.",
+    "c_9q3t": "D = deposit (25% of the contract value, at signing), F = final invoice (after removal, for the hives actually delivered less the deposit), C = credit note (a refund, with a negative amount).",
+    "c_9kvq": "Issue date.",
+    "c_rdk7": "Amount before discount, in cents. Negative for credit notes.",
+    "c_p5f2": "Discount in basis points (100 = 1%).",
+    "c_7w32": "Date the invoice was paid in full; for a credit note, the date the refund was applied. Empty when not yet paid.",
+    "c_j45j": "1 = voided (issued in error and replaced by a new invoice); ignore voided invoices in every total. 0 = valid."
+   }
+  }
+ }
+}
